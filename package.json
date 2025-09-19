@@ -1,0 +1,30 @@
+{
+  "name": "app-store-screenshot-generator",
+  "version": "1.0.0",
+  "description": "Generate framed screenshots for App Store submissions (iPhone & iPad)",
+  "main": "generate.ts",
+  "scripts": {
+    "start": "tsx generate.ts",
+    "frame": "tsx 01_input_framed/framer.ts",
+    "combine": "tsx 02_input_combined/combiner.ts",
+    "combine:iphone": "tsx 02_input_combined/combiner.ts --device iphone",
+    "combine:ipad": "tsx 02_input_combined/combiner.ts --device ipad",
+    "split": "tsx 03_splitter/splitter.ts",
+    "split:iphone": "tsx 03_splitter/splitter.ts --device iphone",
+    "split:ipad": "tsx 03_splitter/splitter.ts --device ipad",
+    "cleanup": "tsx 03_splitter/cleanup.ts",
+    "delete_input_screenshots": "tsx 00_input/screenshots/delete_all.ts",
+    "create_placeholders": "tsx 00_input/screenshots/create_placeholders.ts",
+    "build": "npm run frame && npm run combine:iphone && npm run combine:ipad && npm run split:iphone && npm run split:ipad",
+    "build:iphone": "npm run frame && npm run combine:iphone && npm run split:iphone",
+    "build:ipad": "npm run frame && npm run combine:ipad && npm run split:ipad",
+    "build:locale": "node -e \"const locale = process.argv[1]; if (!locale) { console.error('Usage: npm run build:locale <locale>'); process.exit(1); } const { spawn } = require('child_process'); const isWindows = process.platform === 'win32'; function runCommand(cmd, args) { return new Promise((resolve, reject) => { const child = spawn(cmd, args, { stdio: 'inherit', shell: isWindows }); child.on('close', (code) => code === 0 ? resolve() : reject(new Error('Command failed with code ' + code))); child.on('error', reject); }); } async function run() { try { console.log('Building locale: ' + locale); await runCommand('npm', ['run', 'frame', '--', '--locale', locale]); await runCommand('npm', ['run', 'combine:iphone', '--', '--locale', locale]); await runCommand('npm', ['run', 'combine:ipad', '--', '--locale', locale]); await runCommand('npm', ['run', 'split:iphone', '--', '--locale', locale]); await runCommand('npm', ['run', 'split:ipad', '--', '--locale', locale]); console.log('Build completed successfully!'); } catch (error) { console.error('Build failed:', error.message); process.exit(1); } } run();\""
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0"
+  }
+}
