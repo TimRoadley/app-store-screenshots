@@ -74,7 +74,7 @@ You can hover over the gradient to move the colours around, or click the + and -
   │   │       └── ...              # Other language folders
   ```
 5. Generate the App Store ready screenshots
-  - To install dependencies, run ```npm run install``` (only needs to be done once)
+  - To install dependencies, run ```npm install``` (only needs to be done once)
   - To build all, run ```npm run build``` (builds all locales)
   - To build one locale, for example english, run ```npm run build:locale en```
 
