@@ -103,4 +103,4 @@ You can hover over the gradient to move the colours around, or click the + and -
 ## License
 This is FREE and open source.
 
-If you found this software useful, consider giving the repo a star so others can find it too!
+If you found this software useful, give the repo a star so others can find it too!
