@@ -101,4 +101,6 @@ You can hover over the gradient to move the colours around, or click the + and -
 - [https://photogradient.com/](https://photogradient.com/) for the background gradient generator
 
 ## License
-This is free and open source code. I hope it saves you time!
+This is FREE and open source.
+
+If you found this software useful, consider giving the repo a star so others can find it too!
